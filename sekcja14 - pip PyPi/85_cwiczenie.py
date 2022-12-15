@@ -18,15 +18,23 @@ with open("links.txt", "r", encoding="UTF-8") as file:
 
 print(allLinks)
 
+
 for line in allLinks:
-    print(line)
-    response = requests.get(line)
-    print(response.status_code)
-    if response.status_code == 200:
-        workingLinks.append(line)
-    elif response.status_code != 200:
+    try:
+        response = requests.get(line)
+        if response.status_code == 200 or 403:
+            workingLinks.append(line)
+
+    except requests.exceptions.ConnectionError:
         notWorkingLinks.append(line)
 
 print(workingLinks)
 print(notWorkingLinks)
-print(restLinks)
+
+with open("workingLinks.txt", "w", encoding="UTF-8") as file:
+    for link in workingLinks:
+        file.write(link + "\n")
+
+with open("notWorkingLinks.txt", "w", encoding="UTF-8") as file:
+    for link in notWorkingLinks:
+        file.write(link + "\n")

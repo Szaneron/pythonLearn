@@ -7,6 +7,6 @@ PyPi - Python Package index - indeks (spis) pakunków do Pythona
 
 import requests
 
-response = requests.get("https://czxvsadfgsdfv.com/pl")
+response = requests.get("https://wp.pl")
 print(response.status_code)
 
