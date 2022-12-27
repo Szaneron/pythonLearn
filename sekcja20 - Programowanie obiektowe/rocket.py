@@ -3,16 +3,20 @@ from math import sqrt
 
 
 class Rocket:
+    nextId = 1
+
     def __init__(self, speed=1):
         self.altitude = 0
         self.speed = speed
         self.x = 0
+        self.id = Rocket.nextId
+        Rocket.nextId += 1
 
     def move_up(self):
         self.altitude += self.speed
 
     def __str__(self):
-        return "Rakieta jest aktualnie na wysyokosci: " + str(self.altitude)
+        return "Rakieta o id: " + str(self.id) + " jest aktualnie na wysyokosci: " + str(self.altitude)
 
 
 class RocketBoard:
@@ -24,7 +28,7 @@ class RocketBoard:
             self.rockets[rocketIndexToMove].move_up()
 
         for rocket in self.rockets:
-            print(rocket)
+            print(rocket, rocket.id)
 
     def __getitem__(self, key):
         return self.rockets[key]
