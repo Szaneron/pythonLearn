@@ -1,5 +1,7 @@
 from rocket import Rocket, RocketBoard
 
-board = RocketBoard(2)
+board = RocketBoard(12)
+board[0].x = 4
 
-print(board.rockets[0].altitude)
+print(board.get_distance(board[0], board[1]))
+print(len(board))
